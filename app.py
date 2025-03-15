@@ -232,7 +232,7 @@ with tabs[1]:
 
     # Sample Streamlit apps
     apps = [
-        {"title": "Amortization Calculator App", "description": "A portfolio showcasing data science projects and skills.", "link": "https://your-portfolio-link.com"},
+        {"title": "Amortization Calculator App", "description": "A portfolio showcasing data science projects and skills.", "link": "https://asheshrajgnawali-amortization-calculator-app.streamlit.app/"},
         #{"title": "Analytics Dashboard", "description": "An interactive dashboard for data analytics and visualization.", "link": "https://your-dashboard-link.com"},
         #{"title": "Machine Learning App", "description": "A web app for exploring machine learning models and predictions.", "link": "https://your-ml-app-link.com"}
     ]
