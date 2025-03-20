@@ -1,5 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
+import math
+import numpy as np
 
 # Page Configuration
 st.set_page_config(
@@ -8,7 +10,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for dark theme and sleek design
 st.markdown("""
     <style>
     /* Overall theme */
@@ -110,79 +111,140 @@ st.markdown("""
 
 # Sidebar
 with st.sidebar:
-    st.image("https://via.placeholder.com/300", use_container_width=True)
-    st.markdown("<h2 style='text-align: center; margin-bottom: 0px;'>Ashesh Raj Gnawali</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #bb86fc; margin-top: 0px;'>Data Scientist & ML Engineer</p>", unsafe_allow_html=True)
-
-    st.markdown("---")
-    st.markdown("### 📍 Oslo, Norway")
-    st.markdown("### 📧 [ashez2051@gmail.com](mailto:ashez2051@gmail.com)")
-    st.markdown("### 🔗 [LinkedIn Profile](https://www.linkedin.com/in/ashesh-raj-gnawali/)")
-    st.markdown("### 📞 (+47) 93671761")
-
-    st.markdown("---")
-    st.markdown("### Education")
-    st.markdown("**MSc in Data Science**")
-    st.markdown("Norwegian University of Life Sciences")
-    st.markdown("**BEng in Electrical Engineering**")
-    st.markdown("Tribhuvan University")
-    st.markdown("---")
-    st.markdown("### Certifications")
-    st.markdown("✅ [Professional Scrum Master (PSM II)](https://www.credly.com/badges/67227184-d4e6-450b-a644-5862bd4410c6/linked_in_profile)")
-    st.markdown("✅ [Professional Scrum Master (PSM I)](https://www.credly.com/badges/392b6543-def7-47e5-8b96-5adced6d21f1/linked_in_profile)")
-
-# Main Content
-st.markdown("<h1 style='text-align: center;'>Data Science Portfolio</h1>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style='text-align: center; padding: 0px 10px 15px 10px;'>
+        <h2 style='margin-bottom: 5px; color: white;'>Ashesh Raj Gnawali</h2>
+        <p style='color: #bb86fc; margin-top: 0px; font-size: 16px;'>Data Scientist | AI Engineer | Analytics Engineer</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style='padding: 0px 10px; margin-bottom: 15px;'>
+        <div style='display: flex; align-items: center; margin-bottom: 8px;'>
+            <div style='width: 24px; margin-right: 10px;'>📍</div>
+            <div>Oslo, Norway</div>
+        </div>
+        <div style='display: flex; align-items: center; margin-bottom: 8px;'>
+            <div style='width: 24px; margin-right: 10px;'>📧</div>
+            <div><a href='mailto:ashez2051@gmail.com' style='color: #bb86fc; text-decoration: none;'>ashez2051@gmail.com</a></div>
+        </div>
+        <div style='display: flex; align-items: center; margin-bottom: 8px;'>
+            <div style='width: 24px; margin-right: 10px;'>🔗</div>
+            <div><a href='https://www.linkedin.com/in/ashesh-raj-gnawali/' target='_blank' style='color: #bb86fc; text-decoration: none;'>LinkedIn Profile</a></div>
+        </div>
+        <div style='display: flex; align-items: center; margin-bottom: 8px;'>
+            <div style='width: 24px; margin-right: 10px;'>📞</div>
+            <div>(+47) 93671761</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Divider
+    st.markdown("<hr style='margin: 15px 0px; border-color: #333;'>", unsafe_allow_html=True)
+    
+    # Education
+    st.markdown("""
+    <div style='padding: 0px 10px;'>
+        <h3 style='margin-bottom: 12px; color: white;'>Education</h3>
+        <div style='margin-bottom: 12px;'>
+            <p style='margin: 0; font-weight: bold; color: white;'>MSc in Data Science</p>
+            <p style='margin: 0; font-size: 14px; color: #bbbbbb;'>Norwegian University of Life Sciences</p>
+        </div>
+        <div style='margin-bottom: 15px;'>
+            <p style='margin: 0; font-weight: bold; color: white;'>BEng in Electrical Engineering</p>
+            <p style='margin: 0; font-size: 14px; color: #bbbbbb;'>Tribhuvan University</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("<hr style='margin: 15px 0px; border-color: #333;'>", unsafe_allow_html=True)
+    
+    # Certifications 
+    st.markdown("""
+    <div style='padding: 0px 10px;'>
+        <h3 style='margin-bottom: 12px; color: white;'>Certifications</h3>
+        <div style='display: flex; align-items: flex-start; margin-bottom: 10px;'>
+            <div style='color: #4CAF50; margin-right: 8px;'>✅</div>
+            <div>
+                <a href='https://www.credly.com/badges/67227184-d4e6-450b-a644-5862bd4410c6/linked_in_profile' 
+                   target='_blank' style='color: #bb86fc; text-decoration: none;'>
+                   Professional Scrum Master (PSM II)
+                </a>
+            </div>
+        </div>
+        <div style='display: flex; align-items: flex-start; margin-bottom: 10px;'>
+            <div style='color: #4CAF50; margin-right: 8px;'>✅</div>
+            <div>
+                <a href='https://www.credly.com/badges/392b6543-def7-47e5-8b96-5adced6d21f1/linked_in_profile' 
+                   target='_blank' style='color: #bb86fc; text-decoration: none;'>
+                   Professional Scrum Master (PSM I)
+                </a>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Brief introduction
 st.markdown("""
-<div style='background-color: #1e1e1e; padding: 20px; border-radius: 8px; margin-bottom: 25px;'>
-Proven success in developing predictive models, saving costs, and optimizing operations. Skilled in building data pipelines and ETL processes using Azure and Apache Airflow. Proficient in creating actionable insights and dashboards with PowerBI and Python. Experienced in cross-functional collaboration to deliver data-driven solutions.
+<div style='background-color: #1e1e1e; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 3px solid #bb86fc;'>
+<ul style='margin: 0; padding-left: 20px; line-height: 1.8; font-size: 15px; color: white;'>
+    <li>Proven success in developing predictive models, saving costs, and optimizing operations.</li>
+    <li>Skilled in building data pipelines and ETL processes using Azure and Apache Airflow.</li>
+    <li>Proficient in creating actionable insights and dashboards with PowerBI and Python.</li>
+    <li>Experienced in cross-functional collaboration to deliver data-driven solutions.</li>
+</ul>
 </div>
 """, unsafe_allow_html=True)
 
-# Create tabs for better organization
+
+
+# Create tabs 
 tabs = st.tabs(["🛠️ Skills", "🚀 WebApp Projects", "📝 Publications"])
 
 # Tab 1: Skills & Tools
 with tabs[0]:
-    col1, col2 = st.columns(2)
+    selected_option = st.radio(
+        "#### Select View:",
+        ["Technical Stack", "Core Competencies"],
+        horizontal=True,
+        key="view_selector"
+    )
+    st.markdown(
+        """<style>
+            /* Target all text elements in the radio component */
+            div[data-testid="stHorizontalRadio"] label, 
+            div[data-testid="stHorizontalRadio"] p,
+            div[data-testid="stHorizontalRadio"] span,
+            .stRadio label p,
+            div[role="radiogroup"] p,
+            div[role="radiogroup"] label p {
+                color: white !important;
+            }
+            
+            /* Target specifically the text within radio buttons */
+            .stRadio div:has(input[type="radio"]) p {
+                color: white !important;
+            }
+            
+            /* Override any Streamlit default styling */
+            #view_selector p {
+                color: white !important;
+            }
+            
+            /* Target the "Select View:" label specifically */
+            .stRadio > label, 
+            .stRadio > div > label,
+            .stRadio h4,
+            .stRadio label h4,
+            div.stRadio label:first-child,
+            .stRadio > div:first-child > label {
+                color: white !important;
+            }
+        </style>""",
+        unsafe_allow_html=True
+    )
 
-    with col1:
-        st.markdown("<div class='card'>", unsafe_allow_html=True)
-        st.markdown("### Core Competencies")
-
-        # Create a radar chart for skills
-        categories = ['Predictive Modeling', 'Data Pipelines', 'ETL Processes',
-                      'Dashboard Creation', 'Cross-functional Collaboration', 'Agile Methodologies']
-        values = [85, 70, 70, 85, 85, 80]
-
-        fig = go.Figure()
-        fig.add_trace(go.Scatterpolar(
-            r=values,
-            theta=categories,
-            fill='toself',
-            line_color='#bb86fc',
-            fillcolor='rgba(187, 134, 252, 0.2)'
-        ))
-
-        fig.update_layout(
-            polar=dict(
-                radialaxis=dict(
-                    visible=True,
-                    range=[0, 100]
-                )
-            ),
-            showlegend=False,
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            height=400,
-            margin=dict(l=80, r=80, t=20, b=20)
-        )
-        st.plotly_chart(fig, use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with col2:
+    if selected_option == "Technical Stack":
         st.markdown("<div class='card'>", unsafe_allow_html=True)
         st.markdown("### Technical Stack")
 
@@ -191,6 +253,7 @@ with tabs[0]:
         <span class='skill-tag'>Azure ML</span>
         <span class='skill-tag'>Scikit-learn</span>
         <span class='skill-tag'>TensorFlow</span>
+        <span class='skill-tag'>Large Language Modelling</span>
         <span class='skill-tag'>LangChain</span>
         <span class='skill-tag'>OpenAI</span>
         <span class='skill-tag'>RAG</span>
@@ -222,8 +285,64 @@ with tabs[0]:
         <span class='skill-tag'>Matplotlib</span>
         <span class='skill-tag'>Seaborn</span>
         <span class='skill-tag'>Plotly</span>
+        <span class='skill-tag'>Yellowbricks</span>
         """, unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
+
+    elif selected_option == "Core Competencies":
+        st.markdown("<div class='card'>", unsafe_allow_html=True)
+        st.markdown("### Core Competencies")
+
+        # Define categories and values for Data Science/Engineering skills
+        categories = ['Machine Learning', 'SQL & Databases',
+                      'Data Visualization', 'Cloud Platforms', 'Data Engineering',
+                      'Statistical Analysis', 'Business Intelligence', 'Cross-functional Collaboration']
+        values = [83, 77, 85, 70, 72, 83, 85, 90]
+
+        values += [values[0]]
+        categories += [categories[0]]
+
+        fig = go.Figure()
+
+        fig.add_trace(go.Scatterpolar(
+            r=values,
+            theta=categories,
+            fill='toself',
+            line_color='#4361EE',
+            fillcolor='rgba(67, 97, 238, 0.4)',
+            line=dict(width=3),
+            marker=dict(size=12, color='white', symbol='circle', line=dict(color='#4361EE', width=2)),
+            hoverinfo='text',
+            text=[f"{c}: {v}%" for c, v in zip(categories, values)]
+        ))
+
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                    visible=True,
+                    range=[0, 100],
+                    tickfont=dict(size=14, color='white'),
+                    ticksuffix="%",
+                    gridcolor='rgba(255,255,255,0.3)',
+                    tickvals=[0, 20, 40, 60, 80, 100]
+                ),
+                angularaxis=dict(
+                    tickfont=dict(size=15, color='white', family='Arial, sans-serif'),
+                    rotation=90,
+                    direction="clockwise",
+                    gridcolor='rgba(255,255,255,0.2)',
+                ),
+                bgcolor='rgba(0,0,0,0)'
+            ),
+            showlegend=False,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            height=500
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
 
 # Tab 2: WebApp Projects
 with tabs[1]:
@@ -232,9 +351,7 @@ with tabs[1]:
 
     # Sample Streamlit apps
     apps = [
-        {"title": "Amortization Calculator App", "description": "A portfolio showcasing data science projects and skills.", "link": "https://asheshrajgnawali-amortization-calculator-app.streamlit.app/"},
-        #{"title": "Analytics Dashboard", "description": "An interactive dashboard for data analytics and visualization.", "link": "https://your-dashboard-link.com"},
-        #{"title": "Machine Learning App", "description": "A web app for exploring machine learning models and predictions.", "link": "https://your-ml-app-link.com"}
+        {"title": "Amortization Calculator App", "description": "A portfolio showcasing data science projects and skills.", "link": "https://asheshrajgnawali-amortization-calculator-app.streamlit.app/"}
     ]
 
     for app in apps:
@@ -247,7 +364,7 @@ with tabs[2]:
     st.markdown("<div class='section-bar'><h3>Publications</h3></div>", unsafe_allow_html=True)
     st.markdown("<div class='card'>", unsafe_allow_html=True)
 
-    # Updated publication entries
+    # publication entries
     publications = [
         {
             "title": "Handling Slowly Changing Dimensions Using PySpark in Microsoft Fabric",
